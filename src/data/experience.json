@@ -1,0 +1,29 @@
+[
+  {
+    "id": "lionbridge",
+    "company": "Lionbridge",
+    "position": "Backend Software Engineer",
+    "startDate": "2022-01",
+    "endDate": null,
+    "accomplishments": [
+      "Designed and built an electronic invoicing platform integrated with the Dominican Republic's DGII tax authority",
+      "Established CI/CD infrastructure with Gitea and TeamCity, automating builds and deployments across environments",
+      "Implemented secure JWT authentication with refresh token rotation across multiple internal applications",
+      "Led migration of legacy systems to containerized Docker deployments with zero downtime"
+    ],
+    "technologies": ["ASP.NET Core", "PostgreSQL", "Docker", "TeamCity", "Gitea", "JWT"]
+  },
+  {
+    "id": "previous-role",
+    "company": "Software Development",
+    "position": "Full Stack Developer",
+    "startDate": "2020-01",
+    "endDate": "2021-12",
+    "accomplishments": [
+      "Built RESTful APIs with ASP.NET Core following Clean Architecture principles",
+      "Developed database-driven applications with SQL Server and Entity Framework",
+      "Collaborated with frontend teams to deliver integrated web applications"
+    ],
+    "technologies": ["ASP.NET Core", "SQL Server", "Entity Framework", "JavaScript"]
+  }
+]

@@ -1,0 +1,232 @@
+[
+  {
+    "id": "e-invoicing",
+    "title": "Electronic Invoicing Platform",
+    "category": "development",
+    "overview": "Tax-compliant electronic invoicing system integrated with the Dominican Republic's DGII (tax authority). Handles XML document generation, digital certificate signing, JWT authentication, and real-time validation against government web services.",
+    "techStack": ["ASP.NET Core", "PostgreSQL", "XML/XSLT", "Digital Certificates", "JWT", "Docker"],
+    "role": "Lead Developer",
+    "challenges": [
+      "Implementing DGII's XML schema with strict validation rules and digital signature requirements",
+      "Managing certificate lifecycle and secure key storage for production environments",
+      "Handling asynchronous response polling from government endpoints with retry logic and fault tolerance"
+    ],
+    "results": [
+      "Processed thousands of invoices with high submission success rate",
+      "Reduced invoice processing time from minutes to under 3 seconds",
+      "Zero compliance violations since deployment"
+    ],
+    "githubUrl": null,
+    "liveUrl": null,
+    "screenshotPath": null,
+    "featured": true,
+    "order": 1
+  },
+  {
+    "id": "auth-security",
+    "title": "Authentication & Security System",
+    "category": "development",
+    "overview": "Comprehensive authentication and authorization system with JWT access/refresh token flow, API key management, role-based permissions, and full integration test coverage. Built to handle enterprise security requirements across multiple applications.",
+    "techStack": ["ASP.NET Core", "JWT", "API Keys", "xUnit", "PostgreSQL", "Redis", "Docker"],
+    "role": "Backend Developer",
+    "challenges": [
+      "Implementing secure JWT refresh token rotation with proper token revocation and family detection",
+      "Designing an API key system with scoped permissions, rate limiting, and usage tracking",
+      "Achieving high integration test coverage including authentication edge cases and token expiration scenarios"
+    ],
+    "results": [
+      "Zero security incidents related to authentication since deployment",
+      "Comprehensive test suite covering all authentication flows and edge cases",
+      "Reusable authentication middleware adopted across multiple internal projects"
+    ],
+    "githubUrl": null,
+    "liveUrl": null,
+    "screenshotPath": null,
+    "featured": true,
+    "order": 2
+  },
+  {
+    "id": "telephone-extensions",
+    "title": "Telephone Extensions",
+    "category": "development",
+    "overview": "Internal telephony management system for handling PBX extension assignments, call routing configurations, and employee directory integration. Provides a web interface for managing extensions across multiple office locations.",
+    "techStack": ["ASP.NET Core", "SQL Server", "Entity Framework", "React"],
+    "role": "Fullstack Developer",
+    "challenges": [
+      "Integrating with existing PBX infrastructure and managing extension provisioning programmatically",
+      "Designing a user-friendly interface for non-technical staff to manage their own extensions",
+      "Handling multi-site configurations with different PBX systems and numbering schemes"
+    ],
+    "results": [
+      "Eliminated manual extension management, reducing IT support tickets",
+      "Real-time extension directory accessible across all office locations",
+      "Automated provisioning reduced setup time for new employees"
+    ],
+    "githubUrl": null,
+    "liveUrl": null,
+    "screenshotPath": null,
+    "featured": true,
+    "order": 3
+  },
+  {
+    "id": "salonet",
+    "title": "SaloNET",
+    "category": "development",
+    "overview": "Salon management platform for appointment scheduling, client management, and service tracking. Full-stack application with a modern web frontend and robust backend API.",
+    "techStack": ["ASP.NET Core", "PostgreSQL", "Entity Framework", "React", "Docker"],
+    "role": "Fullstack Developer",
+    "challenges": [
+      "Designing a flexible appointment scheduling system that handles overlapping bookings and cancellations",
+      "Building a responsive interface that works seamlessly on both desktop and mobile devices",
+      "Implementing real-time availability updates to prevent double bookings"
+    ],
+    "results": [
+      "Streamlined appointment management reducing no-shows",
+      "Improved client retention through automated reminders and history tracking",
+      "Clean, intuitive UI adopted quickly by salon staff"
+    ],
+    "githubUrl": null,
+    "liveUrl": null,
+    "screenshotPath": null,
+    "featured": true,
+    "order": 4
+  },
+  {
+    "id": "wcf-asmx-services",
+    "title": "WCF/ASMX Services",
+    "category": "development",
+    "overview": "Enterprise SOAP-based web services built with WCF and ASMX for legacy system integrations. Handles inter-system communication, data transformation, and protocol bridging between modern and legacy applications.",
+    "techStack": ["WCF", "ASMX", ".NET Framework", "SQL Server", "XML/SOAP", "IIS"],
+    "role": "Backend Developer",
+    "challenges": [
+      "Maintaining backward compatibility while extending service contracts for new consumers",
+      "Handling complex XML transformations between disparate system schemas",
+      "Ensuring reliable message delivery in high-throughput production environments"
+    ],
+    "results": [
+      "Reliable inter-system communication with minimal downtime",
+      "Successfully bridged legacy and modern systems without disrupting existing integrations",
+      "Comprehensive logging and monitoring for troubleshooting production issues"
+    ],
+    "githubUrl": null,
+    "liveUrl": null,
+    "screenshotPath": null,
+    "featured": true,
+    "order": 5
+  },
+  {
+    "id": "windows-forms",
+    "title": "Windows Forms Applications",
+    "category": "development",
+    "overview": "Desktop applications built with Windows Forms for internal business operations. Feature-rich interfaces for data entry, reporting, and workflow management used daily by enterprise teams.",
+    "techStack": [".NET Framework", "Windows Forms", "SQL Server", "Crystal Reports", "Entity Framework"],
+    "role": "Desktop Developer",
+    "challenges": [
+      "Designing complex data entry forms that enforce business rules while remaining user-friendly",
+      "Integrating with multiple data sources including SQL Server and external APIs",
+      "Implementing offline-capable functionality for environments with unreliable connectivity"
+    ],
+    "results": [
+      "Replaced manual spreadsheet workflows with structured, validated data entry",
+      "Reduced data entry errors through built-in validation and business rule enforcement",
+      "Applications still in daily production use with minimal maintenance"
+    ],
+    "githubUrl": null,
+    "liveUrl": null,
+    "screenshotPath": null,
+    "featured": true,
+    "order": 6
+  },
+  {
+    "id": "yarp-gateway",
+    "title": "YARP Reverse Proxy",
+    "category": "development",
+    "overview": "API gateway and reverse proxy implementation using YARP (Yet Another Reverse Proxy) for routing, load balancing, and request transformation across multiple backend services.",
+    "techStack": ["ASP.NET Core", "YARP", "Docker", "IIS"],
+    "role": "Backend Developer",
+    "challenges": [
+      "Configuring dynamic route discovery and health checking for backend services",
+      "Implementing request/response transformation rules for API versioning and header manipulation",
+      "Ensuring high availability and low-latency proxying under production traffic"
+    ],
+    "results": [
+      "Unified API gateway simplifying client integration with multiple backend services",
+      "Dynamic routing configuration without service restarts",
+      "Improved observability through centralized request logging and metrics"
+    ],
+    "githubUrl": null,
+    "liveUrl": null,
+    "screenshotPath": null,
+    "featured": true,
+    "order": 7
+  },
+  {
+    "id": "gitea-config",
+    "title": "Gitea Configuration",
+    "category": "infrastructure",
+    "overview": "Self-hosted Git server setup and administration using Gitea. Includes repository management, user/organization provisioning, webhook integrations, and migration from previous version control systems.",
+    "techStack": ["Gitea", "Docker", "Linux", "Nginx", "PostgreSQL"],
+    "role": "DevOps Engineer",
+    "challenges": [
+      "Migrating repositories and history from legacy version control systems without data loss",
+      "Configuring webhook pipelines to trigger CI/CD builds on push and pull request events",
+      "Setting up organization-level permissions and branch protection policies for team workflows"
+    ],
+    "results": [
+      "Fully self-hosted Git platform with reliable uptime and automated backups",
+      "Streamlined developer onboarding with organization-based access control",
+      "Seamless integration with TeamCity for automated builds and deployments"
+    ],
+    "githubUrl": null,
+    "liveUrl": null,
+    "screenshotPath": null,
+    "featured": true,
+    "order": 1
+  },
+  {
+    "id": "cicd-teamcity",
+    "title": "CI/CD with TeamCity",
+    "category": "infrastructure",
+    "overview": "End-to-end continuous integration and deployment pipelines built on TeamCity. Manages Windows build agents, automated testing, artifact publishing, and deployment workflows across multiple environments.",
+    "techStack": ["TeamCity", "PowerShell", "Windows Server", "Docker", ".NET SDK"],
+    "role": "DevOps Engineer",
+    "challenges": [
+      "Configuring TeamCity build agents on Windows Server with proper .NET SDK and toolchain management",
+      "Designing deployment pipelines that handle database migrations safely with rollback capabilities",
+      "Establishing build configurations that support multiple branches and environment targets"
+    ],
+    "results": [
+      "Reduced deployment time from manual hours-long processes to automated minutes",
+      "Eliminated deployment-related incidents through automated testing gates",
+      "Enabled the team to ship with confidence through consistent, repeatable builds"
+    ],
+    "githubUrl": null,
+    "liveUrl": null,
+    "screenshotPath": null,
+    "featured": true,
+    "order": 2
+  },
+  {
+    "id": "iis-hosting",
+    "title": "IIS Web Server Management",
+    "category": "infrastructure",
+    "overview": "Production web hosting and application deployment on IIS (Internet Information Services). Covers site configuration, SSL certificate management, application pools, URL rewriting, and performance tuning.",
+    "techStack": ["IIS", "Windows Server", "SSL/TLS", "PowerShell", "URL Rewrite"],
+    "role": "Infrastructure Engineer",
+    "challenges": [
+      "Managing multiple application pools with proper isolation and resource limits",
+      "Automating SSL certificate renewal and binding across dozens of hosted sites",
+      "Troubleshooting production performance issues and configuring request queuing under load"
+    ],
+    "results": [
+      "Reliable hosting platform serving multiple production applications",
+      "Automated deployment scripts reducing manual configuration errors",
+      "Improved security posture through standardized SSL/TLS configurations"
+    ],
+    "githubUrl": null,
+    "liveUrl": null,
+    "screenshotPath": null,
+    "featured": true,
+    "order": 3
+  }
+]

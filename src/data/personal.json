@@ -1,0 +1,17 @@
+{
+  "name": "Richard Anglon",
+  "title": "Fullstack Software Engineer",
+  "tagline": "I build secure, scalable systems using .NET, React, PostgreSQL, Docker, and modern cloud technologies.",
+  "email": "96rdca@gmail.com",
+  "linkedInUrl": "https://linkedin.com/in/richard-anglon",
+  "githubUrl": "https://github.com/96rdca",
+  "aboutParagraphs": [
+    "I'm a fullstack software engineer specializing in building production-grade systems with .NET, ASP.NET Core, and modern frontend frameworks. My work focuses on designing clean, maintainable architectures that handle real-world complexity — from tax authority integrations to CI/CD infrastructure.",
+    "I care deeply about code quality, security, and operational reliability. Every system I build is designed to be tested, monitored, and maintained by the team that comes after me.",
+    "When I'm not writing code, I'm usually improving the development infrastructure — automating builds, streamlining deployments, or hardening authentication flows."
+  ],
+  "currentlyLearning": ["Cloud Architecture", "Kubernetes", "Event-Driven Architecture"],
+  "yearsOfExperience": 5,
+  "industries": ["Financial Services", "Government/Tax Compliance", "Enterprise Software"],
+  "resumePath": "/resume.pdf"
+}
