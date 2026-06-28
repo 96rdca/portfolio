@@ -28,3 +28,17 @@ body {
 section {
   scroll-margin-top: 5rem;
 }
+
+html[data-theme="light"] {
+  --color-background: #ffffff;
+  --color-foreground: #0f172a;
+  --color-surface: #f1f5f9;
+  --color-surface-hover: #e2e8f0;
+  --color-border: #cbd5e1;
+  --color-text-primary: #0f172a;
+  --color-text-secondary: #475569;
+  --color-text-muted: #64748b;
+  --color-accent: #2563eb;
+  --color-accent-hover: #1d4ed8;
+  --color-accent-subtle: #dbeafe;
+}
