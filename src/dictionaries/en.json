@@ -1,0 +1,48 @@
+{
+  "nav": {
+    "about": "About",
+    "projects": "Projects",
+    "skills": "Skills",
+    "experience": "Experience",
+    "contact": "Contact"
+  },
+  "hero": {
+    "greeting": "Hi, my name is",
+    "viewProjects": "View Projects",
+    "downloadResume": "Download Resume"
+  },
+  "about": {
+    "title": "About",
+    "experience": "Experience",
+    "years": "years",
+    "industries": "Industries",
+    "currentlyLearning": "Currently Learning"
+  },
+  "projects": {
+    "title": "Projects",
+    "subtitle": "Production systems I've designed, built, and maintained.",
+    "development": "Development",
+    "infrastructure": "Infrastructure",
+    "challenges": "Challenges",
+    "results": "Results",
+    "showDetails": "Show details",
+    "showLess": "Show less"
+  },
+  "skills": {
+    "title": "Skills"
+  },
+  "experience": {
+    "title": "Experience",
+    "present": "Present"
+  },
+  "contact": {
+    "title": "Contact",
+    "subtitle": "Interested in working together? Let's connect.",
+    "email": "Email",
+    "linkedin": "LinkedIn",
+    "github": "GitHub"
+  },
+  "footer": {
+    "rights": "All rights reserved."
+  }
+}

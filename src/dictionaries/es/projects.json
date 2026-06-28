@@ -1,0 +1,232 @@
+[
+  {
+    "id": "e-invoicing",
+    "title": "Plataforma de Facturación Electrónica",
+    "category": "development",
+    "overview": "Sistema de facturación electrónica compatible con impuestos integrado con la DGII (autoridad fiscal) de República Dominicana. Maneja generación de documentos XML, firma con certificados digitales, autenticación JWT y validación en tiempo real contra servicios web gubernamentales.",
+    "techStack": ["ASP.NET Core", "PostgreSQL", "XML/XSLT", "Certificados Digitales", "JWT", "Docker"],
+    "role": "Desarrollador Líder",
+    "challenges": [
+      "Implementar el esquema XML de la DGII con reglas de validación estrictas y requisitos de firma digital",
+      "Gestionar el ciclo de vida de certificados y almacenamiento seguro de claves para entornos de producción",
+      "Manejar el sondeo asíncrono de respuestas de endpoints gubernamentales con lógica de reintentos y tolerancia a fallos"
+    ],
+    "results": [
+      "Procesó miles de facturas con alta tasa de éxito en envío",
+      "Redujo el tiempo de procesamiento de facturas de minutos a menos de 3 segundos",
+      "Cero violaciones de cumplimiento desde el despliegue"
+    ],
+    "githubUrl": null,
+    "liveUrl": null,
+    "screenshotPath": null,
+    "featured": true,
+    "order": 1
+  },
+  {
+    "id": "auth-security",
+    "title": "Sistema de Autenticación y Seguridad",
+    "category": "development",
+    "overview": "Sistema integral de autenticación y autorización con flujo de tokens JWT de acceso/actualización, gestión de claves API, permisos basados en roles y cobertura completa de pruebas de integración. Construido para manejar requisitos de seguridad empresarial en múltiples aplicaciones.",
+    "techStack": ["ASP.NET Core", "JWT", "API Keys", "xUnit", "PostgreSQL", "Redis", "Docker"],
+    "role": "Desarrollador Backend",
+    "challenges": [
+      "Implementar rotación segura de tokens de actualización JWT con revocación adecuada de tokens y detección de familias",
+      "Diseñar un sistema de claves API con permisos delimitados, limitación de velocidad y seguimiento de uso",
+      "Lograr alta cobertura de pruebas de integración incluyendo casos límite de autenticación y escenarios de expiración de tokens"
+    ],
+    "results": [
+      "Cero incidentes de seguridad relacionados con autenticación desde el despliegue",
+      "Suite de pruebas integral cubriendo todos los flujos de autenticación y casos límite",
+      "Middleware de autenticación reutilizable adoptado en múltiples proyectos internos"
+    ],
+    "githubUrl": null,
+    "liveUrl": null,
+    "screenshotPath": null,
+    "featured": true,
+    "order": 2
+  },
+  {
+    "id": "telephone-extensions",
+    "title": "Extensiones Telefónicas",
+    "category": "development",
+    "overview": "Sistema interno de gestión de telefonía para manejar asignaciones de extensiones PBX, configuraciones de enrutamiento de llamadas e integración con directorio de empleados. Proporciona una interfaz web para gestionar extensiones en múltiples ubicaciones de oficina.",
+    "techStack": ["ASP.NET Core", "SQL Server", "Entity Framework", "React"],
+    "role": "Desarrollador Fullstack",
+    "challenges": [
+      "Integrar con infraestructura PBX existente y gestionar el aprovisionamiento de extensiones programáticamente",
+      "Diseñar una interfaz amigable para personal no técnico para gestionar sus propias extensiones",
+      "Manejar configuraciones multi-sitio con diferentes sistemas PBX y esquemas de numeración"
+    ],
+    "results": [
+      "Eliminó la gestión manual de extensiones, reduciendo tickets de soporte IT",
+      "Directorio de extensiones en tiempo real accesible en todas las ubicaciones de oficina",
+      "El aprovisionamiento automatizado redujo el tiempo de configuración para nuevos empleados"
+    ],
+    "githubUrl": null,
+    "liveUrl": null,
+    "screenshotPath": null,
+    "featured": true,
+    "order": 3
+  },
+  {
+    "id": "salonet",
+    "title": "SaloNET",
+    "category": "development",
+    "overview": "Plataforma de gestión de salón para programación de citas, gestión de clientes y seguimiento de servicios. Aplicación full-stack con un frontend web moderno y una API backend robusta.",
+    "techStack": ["ASP.NET Core", "PostgreSQL", "Entity Framework", "React", "Docker"],
+    "role": "Desarrollador Fullstack",
+    "challenges": [
+      "Diseñar un sistema flexible de programación de citas que maneje reservas superpuestas y cancelaciones",
+      "Construir una interfaz responsiva que funcione sin problemas tanto en escritorio como en dispositivos móviles",
+      "Implementar actualizaciones de disponibilidad en tiempo real para prevenir reservas dobles"
+    ],
+    "results": [
+      "Gestión de citas simplificada reduciendo ausencias",
+      "Mejoró la retención de clientes mediante recordatorios automatizados y seguimiento de historial",
+      "Interfaz limpia e intuitiva adoptada rápidamente por el personal del salón"
+    ],
+    "githubUrl": null,
+    "liveUrl": null,
+    "screenshotPath": null,
+    "featured": true,
+    "order": 4
+  },
+  {
+    "id": "wcf-asmx-services",
+    "title": "Servicios WCF/ASMX",
+    "category": "development",
+    "overview": "Servicios web empresariales basados en SOAP construidos con WCF y ASMX para integraciones de sistemas legados. Maneja comunicación entre sistemas, transformación de datos y puente de protocolos entre aplicaciones modernas y legadas.",
+    "techStack": ["WCF", "ASMX", ".NET Framework", "SQL Server", "XML/SOAP", "IIS"],
+    "role": "Desarrollador Backend",
+    "challenges": [
+      "Mantener compatibilidad hacia atrás mientras se extienden contratos de servicio para nuevos consumidores",
+      "Manejar transformaciones XML complejas entre esquemas de sistemas dispares",
+      "Asegurar entrega confiable de mensajes en entornos de producción de alto rendimiento"
+    ],
+    "results": [
+      "Comunicación confiable entre sistemas con tiempo de inactividad mínimo",
+      "Puenteó exitosamente sistemas legados y modernos sin interrumpir integraciones existentes",
+      "Registro y monitoreo integral para solución de problemas en producción"
+    ],
+    "githubUrl": null,
+    "liveUrl": null,
+    "screenshotPath": null,
+    "featured": true,
+    "order": 5
+  },
+  {
+    "id": "windows-forms",
+    "title": "Aplicaciones Windows Forms",
+    "category": "development",
+    "overview": "Aplicaciones de escritorio construidas con Windows Forms para operaciones comerciales internas. Interfaces ricas en funcionalidades para ingreso de datos, reportes y gestión de flujos de trabajo usadas diariamente por equipos empresariales.",
+    "techStack": [".NET Framework", "Windows Forms", "SQL Server", "Crystal Reports", "Entity Framework"],
+    "role": "Desarrollador de Escritorio",
+    "challenges": [
+      "Diseñar formularios complejos de ingreso de datos que apliquen reglas de negocio siendo amigables al usuario",
+      "Integrar con múltiples fuentes de datos incluyendo SQL Server y APIs externas",
+      "Implementar funcionalidad capaz de operar sin conexión para entornos con conectividad no confiable"
+    ],
+    "results": [
+      "Reemplazó flujos de trabajo manuales en hojas de cálculo con ingreso de datos estructurado y validado",
+      "Redujo errores de ingreso de datos mediante validación integrada y aplicación de reglas de negocio",
+      "Aplicaciones aún en uso de producción diario con mantenimiento mínimo"
+    ],
+    "githubUrl": null,
+    "liveUrl": null,
+    "screenshotPath": null,
+    "featured": true,
+    "order": 6
+  },
+  {
+    "id": "yarp-gateway",
+    "title": "Proxy Inverso YARP",
+    "category": "development",
+    "overview": "Implementación de gateway API y proxy inverso usando YARP (Yet Another Reverse Proxy) para enrutamiento, balanceo de carga y transformación de solicitudes a través de múltiples servicios backend.",
+    "techStack": ["ASP.NET Core", "YARP", "Docker", "IIS"],
+    "role": "Desarrollador Backend",
+    "challenges": [
+      "Configurar descubrimiento dinámico de rutas y verificación de salud para servicios backend",
+      "Implementar reglas de transformación de solicitudes/respuestas para versionado de API y manipulación de headers",
+      "Asegurar alta disponibilidad y proxying de baja latencia bajo tráfico de producción"
+    ],
+    "results": [
+      "Gateway API unificado simplificando la integración de clientes con múltiples servicios backend",
+      "Configuración de enrutamiento dinámica sin reinicios de servicio",
+      "Observabilidad mejorada a través de registro centralizado de solicitudes y métricas"
+    ],
+    "githubUrl": null,
+    "liveUrl": null,
+    "screenshotPath": null,
+    "featured": true,
+    "order": 7
+  },
+  {
+    "id": "gitea-config",
+    "title": "Configuración de Gitea",
+    "category": "infrastructure",
+    "overview": "Configuración y administración de servidor Git auto-hospedado usando Gitea. Incluye gestión de repositorios, aprovisionamiento de usuarios/organizaciones, integraciones de webhooks y migración desde sistemas de control de versiones anteriores.",
+    "techStack": ["Gitea", "Docker", "Linux", "Nginx", "PostgreSQL"],
+    "role": "Ingeniero DevOps",
+    "challenges": [
+      "Migrar repositorios e historial desde sistemas de control de versiones legados sin pérdida de datos",
+      "Configurar pipelines de webhooks para disparar builds CI/CD en eventos de push y pull request",
+      "Establecer permisos a nivel de organización y políticas de protección de ramas para flujos de trabajo en equipo"
+    ],
+    "results": [
+      "Plataforma Git completamente auto-hospedada con tiempo de actividad confiable y respaldos automatizados",
+      "Incorporación de desarrolladores simplificada con control de acceso basado en organizaciones",
+      "Integración perfecta con TeamCity para builds y despliegues automatizados"
+    ],
+    "githubUrl": null,
+    "liveUrl": null,
+    "screenshotPath": null,
+    "featured": true,
+    "order": 1
+  },
+  {
+    "id": "cicd-teamcity",
+    "title": "CI/CD con TeamCity",
+    "category": "infrastructure",
+    "overview": "Pipelines de integración y despliegue continuo de extremo a extremo construidos en TeamCity. Gestiona agentes de build en Windows, pruebas automatizadas, publicación de artefactos y flujos de trabajo de despliegue en múltiples entornos.",
+    "techStack": ["TeamCity", "PowerShell", "Windows Server", "Docker", ".NET SDK"],
+    "role": "Ingeniero DevOps",
+    "challenges": [
+      "Configurar agentes de build de TeamCity en Windows Server con gestión adecuada de .NET SDK y cadena de herramientas",
+      "Diseñar pipelines de despliegue que manejen migraciones de base de datos de forma segura con capacidades de rollback",
+      "Establecer configuraciones de build que soporten múltiples ramas y objetivos de entorno"
+    ],
+    "results": [
+      "Redujo el tiempo de despliegue de procesos manuales de horas a minutos automatizados",
+      "Eliminó incidentes relacionados con despliegue mediante puertas de pruebas automatizadas",
+      "Permitió al equipo desplegar con confianza mediante builds consistentes y repetibles"
+    ],
+    "githubUrl": null,
+    "liveUrl": null,
+    "screenshotPath": null,
+    "featured": true,
+    "order": 2
+  },
+  {
+    "id": "iis-hosting",
+    "title": "Gestión de Servidor Web IIS",
+    "category": "infrastructure",
+    "overview": "Hospedaje web de producción y despliegue de aplicaciones en IIS (Internet Information Services). Cubre configuración de sitios, gestión de certificados SSL, pools de aplicaciones, reescritura de URLs y ajuste de rendimiento.",
+    "techStack": ["IIS", "Windows Server", "SSL/TLS", "PowerShell", "URL Rewrite"],
+    "role": "Ingeniero de Infraestructura",
+    "challenges": [
+      "Gestionar múltiples pools de aplicaciones con aislamiento adecuado y límites de recursos",
+      "Automatizar renovación de certificados SSL y binding a través de docenas de sitios hospedados",
+      "Solucionar problemas de rendimiento en producción y configurar colas de solicitudes bajo carga"
+    ],
+    "results": [
+      "Plataforma de hospedaje confiable sirviendo múltiples aplicaciones de producción",
+      "Scripts de despliegue automatizados reduciendo errores de configuración manual",
+      "Postura de seguridad mejorada mediante configuraciones SSL/TLS estandarizadas"
+    ],
+    "githubUrl": null,
+    "liveUrl": null,
+    "screenshotPath": null,
+    "featured": true,
+    "order": 3
+  }
+]

@@ -1,0 +1,48 @@
+{
+  "nav": {
+    "about": "Sobre mí",
+    "projects": "Proyectos",
+    "skills": "Habilidades",
+    "experience": "Experiencia",
+    "contact": "Contacto"
+  },
+  "hero": {
+    "greeting": "Hola, mi nombre es",
+    "viewProjects": "Ver Proyectos",
+    "downloadResume": "Descargar CV"
+  },
+  "about": {
+    "title": "Sobre mí",
+    "experience": "Experiencia",
+    "years": "años",
+    "industries": "Industrias",
+    "currentlyLearning": "Aprendiendo actualmente"
+  },
+  "projects": {
+    "title": "Proyectos",
+    "subtitle": "Sistemas en producción que he diseñado, construido y mantenido.",
+    "development": "Desarrollo",
+    "infrastructure": "Infraestructura",
+    "challenges": "Desafíos",
+    "results": "Resultados",
+    "showDetails": "Ver detalles",
+    "showLess": "Ver menos"
+  },
+  "skills": {
+    "title": "Habilidades"
+  },
+  "experience": {
+    "title": "Experiencia",
+    "present": "Presente"
+  },
+  "contact": {
+    "title": "Contacto",
+    "subtitle": "¿Interesado en trabajar juntos? Conectemos.",
+    "email": "Correo",
+    "linkedin": "LinkedIn",
+    "github": "GitHub"
+  },
+  "footer": {
+    "rights": "Todos los derechos reservados."
+  }
+}

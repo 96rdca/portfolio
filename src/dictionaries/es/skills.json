@@ -1,0 +1,32 @@
+[
+  {
+    "id": "backend",
+    "name": "Backend",
+    "icon": "Server",
+    "skills": [".NET", "ASP.NET Core", "Entity Framework", "Web API"]
+  },
+  {
+    "id": "database",
+    "name": "Base de Datos",
+    "icon": "Database",
+    "skills": ["PostgreSQL", "SQL Server", "Redis"]
+  },
+  {
+    "id": "infrastructure",
+    "name": "Infraestructura",
+    "icon": "Container",
+    "skills": ["Docker", "IIS", "Linux", "TeamCity", "Gitea"]
+  },
+  {
+    "id": "architecture",
+    "name": "Arquitectura",
+    "icon": "Layers",
+    "skills": ["Arquitectura Limpia", "CQRS", "Inyección de Dependencias", "APIs REST"]
+  },
+  {
+    "id": "testing",
+    "name": "Pruebas",
+    "icon": "FlaskConical",
+    "skills": ["xUnit", "Pruebas de Integración"]
+  }
+]
