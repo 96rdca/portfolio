@@ -2,18 +2,21 @@
 
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
+import { ThemeToggle } from "@/components/ui/ThemeToggle";
+import { LanguageSwitcher } from "@/components/ui/LanguageSwitcher";
+import type { Dictionary } from "@/lib/dictionaries";
 
-const navLinks = [
-  { href: "#about", label: "About" },
-  { href: "#projects", label: "Projects" },
-  { href: "#skills", label: "Skills" },
-  { href: "#experience", label: "Experience" },
-  { href: "#contact", label: "Contact" },
-];
-
-export function Header() {
+export function Header({ dict, lang }: { dict: Dictionary; lang: string }) {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("");
+
+  const navLinks = [
+    { href: "#about", label: dict.nav.about },
+    { href: "#projects", label: dict.nav.projects },
+    { href: "#skills", label: dict.nav.skills },
+    { href: "#experience", label: dict.nav.experience },
+    { href: "#contact", label: dict.nav.contact },
+  ];
 
   useEffect(() => {
     const sections = navLinks.map((l) =>
@@ -45,29 +48,32 @@ export function Header() {
           RA
         </a>
 
-        <nav className="hidden gap-1 md:flex">
-          {navLinks.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              className={`rounded-md px-3 py-2 text-sm transition-colors ${
-                activeSection === link.href
-                  ? "text-accent"
-                  : "text-text-secondary hover:text-text-primary"
-              }`}
-            >
-              {link.label}
-            </a>
-          ))}
-        </nav>
-
-        <button
-          onClick={() => setMobileOpen(!mobileOpen)}
-          className="text-text-secondary md:hidden"
-          aria-label="Toggle menu"
-        >
-          {mobileOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
+        <div className="flex items-center gap-1">
+          <nav className="hidden gap-1 md:flex">
+            {navLinks.map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                className={`rounded-md px-3 py-2 text-sm transition-colors ${
+                  activeSection === link.href
+                    ? "text-accent"
+                    : "text-text-secondary hover:text-text-primary"
+                }`}
+              >
+                {link.label}
+              </a>
+            ))}
+          </nav>
+          <LanguageSwitcher lang={lang} />
+          <ThemeToggle />
+          <button
+            onClick={() => setMobileOpen(!mobileOpen)}
+            className="text-text-secondary md:hidden"
+            aria-label="Toggle menu"
+          >
+            {mobileOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
+        </div>
       </div>
 
       {mobileOpen && (

@@ -3,39 +3,40 @@ import { GitHubIcon, LinkedInIcon } from "@/components/ui/Icons";
 import { Section } from "@/components/layout/Section";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { AnimateOnScroll } from "@/components/ui/AnimateOnScroll";
-import { personal } from "@/lib/data";
+import type { Dictionary } from "@/lib/dictionaries";
+import type { PersonalInfo } from "@/types";
 
-const links = [
-  {
-    icon: (props: { size: number; className?: string }) => <Mail {...props} />,
-    label: "Email",
-    value: personal.email,
-    href: `mailto:${personal.email}`,
-    external: false,
-  },
-  {
-    icon: (props: { size: number; className?: string }) => <LinkedInIcon {...props} />,
-    label: "LinkedIn",
-    value: "richard-anglon",
-    href: personal.linkedInUrl,
-    external: true,
-  },
-  {
-    icon: (props: { size: number; className?: string }) => <GitHubIcon {...props} />,
-    label: "GitHub",
-    value: "96rdca",
-    href: personal.githubUrl,
-    external: true,
-  },
-];
+export function Contact({ dict, data }: { dict: Dictionary; data: PersonalInfo }) {
+  const links = [
+    {
+      icon: (props: { size: number; className?: string }) => <Mail {...props} />,
+      label: dict.contact.email,
+      value: data.email,
+      href: `mailto:${data.email}`,
+      external: false,
+    },
+    {
+      icon: (props: { size: number; className?: string }) => <LinkedInIcon {...props} />,
+      label: dict.contact.linkedin,
+      value: "richard-anglon",
+      href: data.linkedInUrl,
+      external: true,
+    },
+    {
+      icon: (props: { size: number; className?: string }) => <GitHubIcon {...props} />,
+      label: dict.contact.github,
+      value: "96rdca",
+      href: data.githubUrl,
+      external: true,
+    },
+  ];
 
-export function Contact() {
   return (
     <Section id="contact">
       <AnimateOnScroll>
         <SectionHeading
-          title="Contact"
-          subtitle="Interested in working together? Let's connect."
+          title={dict.contact.title}
+          subtitle={dict.contact.subtitle}
         />
       </AnimateOnScroll>
       <div className="max-w-md space-y-4">

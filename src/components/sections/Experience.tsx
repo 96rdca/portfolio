@@ -2,7 +2,8 @@ import { Section } from "@/components/layout/Section";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Badge } from "@/components/ui/Badge";
 import { AnimateOnScroll } from "@/components/ui/AnimateOnScroll";
-import { experience } from "@/lib/data";
+import type { Dictionary } from "@/lib/dictionaries";
+import type { Experience as ExperienceType } from "@/types";
 
 function formatDate(date: string): string {
   const [year, month] = date.split("-");
@@ -13,20 +14,20 @@ function formatDate(date: string): string {
   return `${months[parseInt(month) - 1]} ${year}`;
 }
 
-export function Experience() {
+export function Experience({ dict, data }: { dict: Dictionary; data: ExperienceType[] }) {
   return (
     <Section id="experience">
       <AnimateOnScroll>
-        <SectionHeading title="Experience" />
+        <SectionHeading title={dict.experience.title} />
       </AnimateOnScroll>
       <div className="relative ml-4 border-l-2 border-border pl-8">
-        {experience.map((job, i) => (
+        {data.map((job, i) => (
           <AnimateOnScroll key={job.id} delay={i * 0.1}>
             <div className="relative mb-12 last:mb-0">
               <div className="absolute -left-[2.55rem] top-1 h-3 w-3 rounded-full border-2 border-accent bg-background" />
               <p className="text-sm text-text-muted">
                 {formatDate(job.startDate)} &mdash;{" "}
-                {job.endDate ? formatDate(job.endDate) : "Present"}
+                {job.endDate ? formatDate(job.endDate) : dict.experience.present}
               </p>
               <h3 className="mt-1 text-xl font-medium text-text-primary">
                 {job.position}

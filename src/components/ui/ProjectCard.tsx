@@ -6,8 +6,9 @@ import { GitHubIcon } from "@/components/ui/Icons";
 import { motion, AnimatePresence } from "framer-motion";
 import { Badge } from "./Badge";
 import type { Project } from "@/types";
+import type { Dictionary } from "@/lib/dictionaries";
 
-export function ProjectCard({ project }: { project: Project }) {
+export function ProjectCard({ project, dict }: { project: Project; dict: Dictionary }) {
   const [expanded, setExpanded] = useState(false);
 
   return (
@@ -67,7 +68,7 @@ export function ProjectCard({ project }: { project: Project }) {
             <div className="mt-6 grid gap-6 border-t border-border pt-6 md:grid-cols-2">
               <div>
                 <h4 className="mb-3 text-sm font-semibold uppercase tracking-wider text-text-muted">
-                  Challenges
+                  {dict.projects.challenges}
                 </h4>
                 <ul className="space-y-2">
                   {project.challenges.map((c, i) => (
@@ -83,7 +84,7 @@ export function ProjectCard({ project }: { project: Project }) {
               </div>
               <div>
                 <h4 className="mb-3 text-sm font-semibold uppercase tracking-wider text-text-muted">
-                  Results
+                  {dict.projects.results}
                 </h4>
                 <ul className="space-y-2">
                   {project.results.map((r, i) => (
@@ -106,7 +107,7 @@ export function ProjectCard({ project }: { project: Project }) {
         onClick={() => setExpanded(!expanded)}
         className="mt-4 flex items-center gap-1 text-sm text-accent transition-colors hover:text-accent-hover"
       >
-        {expanded ? "Show less" : "Show details"}
+        {expanded ? dict.projects.showLess : dict.projects.showDetails}
         <motion.span
           animate={{ rotate: expanded ? 180 : 0 }}
           transition={{ duration: 0.2 }}

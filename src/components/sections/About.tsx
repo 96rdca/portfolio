@@ -2,19 +2,20 @@ import { Section } from "@/components/layout/Section";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Badge } from "@/components/ui/Badge";
 import { AnimateOnScroll } from "@/components/ui/AnimateOnScroll";
-import { personal } from "@/lib/data";
+import type { Dictionary } from "@/lib/dictionaries";
+import type { PersonalInfo } from "@/types";
 
-export function About() {
+export function About({ dict, data }: { dict: Dictionary; data: PersonalInfo }) {
   return (
     <Section id="about">
       <AnimateOnScroll>
-        <SectionHeading title="About" />
+        <SectionHeading title={dict.about.title} />
       </AnimateOnScroll>
       <div className="grid gap-12 md:grid-cols-5">
         <div className="md:col-span-3">
           <AnimateOnScroll>
             <div className="space-y-4">
-              {personal.aboutParagraphs.map((paragraph, i) => (
+              {data.aboutParagraphs.map((paragraph, i) => (
                 <p key={i} className="text-text-secondary leading-relaxed">
                   {paragraph}
                 </p>
@@ -27,28 +28,28 @@ export function About() {
             <div className="space-y-6 rounded-xl border border-border bg-surface p-6">
               <div>
                 <h3 className="text-sm font-semibold uppercase tracking-wider text-text-muted">
-                  Experience
+                  {dict.about.experience}
                 </h3>
                 <p className="mt-1 text-2xl font-bold text-text-primary">
-                  {personal.yearsOfExperience}+ years
+                  {data.yearsOfExperience}+ {dict.about.years}
                 </p>
               </div>
               <div>
                 <h3 className="text-sm font-semibold uppercase tracking-wider text-text-muted">
-                  Industries
+                  {dict.about.industries}
                 </h3>
                 <div className="mt-2 flex flex-wrap gap-2">
-                  {personal.industries.map((industry) => (
+                  {data.industries.map((industry) => (
                     <Badge key={industry}>{industry}</Badge>
                   ))}
                 </div>
               </div>
               <div>
                 <h3 className="text-sm font-semibold uppercase tracking-wider text-text-muted">
-                  Currently Learning
+                  {dict.about.currentlyLearning}
                 </h3>
                 <div className="mt-2 flex flex-wrap gap-2">
-                  {personal.currentlyLearning.map((item) => (
+                  {data.currentlyLearning.map((item) => (
                     <Badge key={item} variant="accent">
                       {item}
                     </Badge>
