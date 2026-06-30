@@ -6,6 +6,8 @@ import { ThemeToggle } from "@/components/ui/ThemeToggle";
 import { LanguageSwitcher } from "@/components/ui/LanguageSwitcher";
 import type { Dictionary } from "@/lib/dictionaries";
 
+const NAV_HREFS = ["#about", "#projects", "#skills", "#experience", "#contact"];
+
 export function Header({ dict, lang }: { dict: Dictionary; lang: string }) {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("");
@@ -19,8 +21,8 @@ export function Header({ dict, lang }: { dict: Dictionary; lang: string }) {
   ];
 
   useEffect(() => {
-    const sections = navLinks.map((l) =>
-      document.querySelector(l.href) as HTMLElement
+    const sections = NAV_HREFS.map((href) =>
+      document.querySelector(href) as HTMLElement
     );
 
     const observer = new IntersectionObserver(
@@ -42,8 +44,8 @@ export function Header({ dict, lang }: { dict: Dictionary; lang: string }) {
   }, []);
 
   return (
-    <header className="fixed top-0 z-50 w-full border-b border-border/50 bg-background/80 backdrop-blur-md">
-      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6">
+    <header className="fixed top-4 left-4 right-4 z-50 mx-auto max-w-6xl rounded-2xl border border-glass-border bg-glass backdrop-blur-xl shadow-lg shadow-black/5">
+      <div className="flex h-14 items-center justify-between px-4 sm:px-6">
         <a href="#" className="font-mono text-lg font-semibold text-text-primary">
           RA
         </a>
@@ -54,9 +56,9 @@ export function Header({ dict, lang }: { dict: Dictionary; lang: string }) {
               <a
                 key={link.href}
                 href={link.href}
-                className={`rounded-md px-3 py-2 text-sm transition-colors ${
+                className={`relative rounded-md px-3 py-2 text-sm transition-colors ${
                   activeSection === link.href
-                    ? "text-accent"
+                    ? "text-accent after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:h-1 after:w-1 after:rounded-full after:bg-accent"
                     : "text-text-secondary hover:text-text-primary"
                 }`}
               >
@@ -70,6 +72,7 @@ export function Header({ dict, lang }: { dict: Dictionary; lang: string }) {
             onClick={() => setMobileOpen(!mobileOpen)}
             className="text-text-secondary md:hidden"
             aria-label="Toggle menu"
+            aria-expanded={mobileOpen}
           >
             {mobileOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
@@ -77,7 +80,7 @@ export function Header({ dict, lang }: { dict: Dictionary; lang: string }) {
       </div>
 
       {mobileOpen && (
-        <nav className="border-t border-border/50 bg-background/95 backdrop-blur-md md:hidden">
+        <nav className="rounded-b-2xl border-t border-border/50 bg-background/95 backdrop-blur-md md:hidden">
           <div className="flex flex-col px-4 py-4">
             {navLinks.map((link) => (
               <a

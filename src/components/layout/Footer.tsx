@@ -12,7 +12,7 @@ export function Footer({ dict, name }: { dict: Dictionary; name: string }) {
         <div className="flex gap-4">
           <a
             href="mailto:96rdca@gmail.com"
-            className="text-text-muted transition-colors hover:text-accent"
+            className="text-text-muted transition-all duration-200 hover:text-accent hover:scale-110"
             aria-label="Email"
           >
             <Mail size={20} />
@@ -21,7 +21,7 @@ export function Footer({ dict, name }: { dict: Dictionary; name: string }) {
             href="https://linkedin.com/in/richard-anglon"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-text-muted transition-colors hover:text-accent"
+            className="text-text-muted transition-all duration-200 hover:text-accent hover:scale-110"
             aria-label="LinkedIn"
           >
             <LinkedInIcon size={20} />
@@ -30,7 +30,7 @@ export function Footer({ dict, name }: { dict: Dictionary; name: string }) {
             href="https://github.com/96rdca"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-text-muted transition-colors hover:text-accent"
+            className="text-text-muted transition-all duration-200 hover:text-accent hover:scale-110"
             aria-label="GitHub"
           >
             <GitHubIcon size={20} />
