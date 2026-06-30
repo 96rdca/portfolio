@@ -12,7 +12,11 @@ export function ProjectCard({ project, dict }: { project: Project; dict: Diction
   const [expanded, setExpanded] = useState(false);
 
   return (
-    <div className="rounded-xl border border-border bg-surface p-6 transition-colors hover:border-border/80">
+    <motion.div
+      className="glass-card card-elevated p-6 transition-all duration-300 hover:border-accent/30"
+      whileHover={{ y: -4 }}
+      transition={{ type: "spring", stiffness: 300, damping: 25 }}
+    >
       <div className="flex items-start justify-between gap-4">
         <div className="flex-1">
           <h3 className="text-xl font-medium text-text-primary">
@@ -105,7 +109,7 @@ export function ProjectCard({ project, dict }: { project: Project; dict: Diction
 
       <button
         onClick={() => setExpanded(!expanded)}
-        className="mt-4 flex items-center gap-1 text-sm text-accent transition-colors hover:text-accent-hover"
+        className="mt-4 flex cursor-pointer items-center gap-1 text-sm text-accent transition-colors hover:text-accent-hover"
       >
         {expanded ? dict.projects.showLess : dict.projects.showDetails}
         <motion.span
@@ -115,6 +119,6 @@ export function ProjectCard({ project, dict }: { project: Project; dict: Diction
           <ChevronDown size={16} />
         </motion.span>
       </button>
-    </div>
+    </motion.div>
   );
 }

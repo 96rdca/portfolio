@@ -20,11 +20,12 @@ export function Experience({ dict, data }: { dict: Dictionary; data: ExperienceT
       <AnimateOnScroll>
         <SectionHeading title={dict.experience.title} />
       </AnimateOnScroll>
-      <div className="relative ml-4 border-l-2 border-border pl-8">
+      <div className="relative ml-4 pl-8">
+        <div className="absolute left-0 top-0 h-full w-0.5 rounded-full bg-gradient-to-b from-accent/20 via-accent/50 to-accent/20" />
         {data.map((job, i) => (
-          <AnimateOnScroll key={job.id} delay={i * 0.1}>
+          <AnimateOnScroll key={job.id} delay={i * 0.1} variant="fade-left">
             <div className="relative mb-12 last:mb-0">
-              <div className="absolute -left-[2.55rem] top-1 h-3 w-3 rounded-full border-2 border-accent bg-background" />
+              <div className="dot-glow absolute -left-[2.55rem] top-1 h-3 w-3 rounded-full border-2 border-accent bg-background" />
               <p className="text-sm text-text-muted">
                 {formatDate(job.startDate)} &mdash;{" "}
                 {job.endDate ? formatDate(job.endDate) : dict.experience.present}

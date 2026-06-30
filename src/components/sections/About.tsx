@@ -24,14 +24,15 @@ export function About({ dict, data }: { dict: Dictionary; data: PersonalInfo }) 
           </AnimateOnScroll>
         </div>
         <div className="md:col-span-2">
-          <AnimateOnScroll delay={0.1}>
-            <div className="space-y-6 rounded-xl border border-border bg-surface p-6">
+          <AnimateOnScroll delay={0.1} variant="fade-right">
+            <div className="glass-card card-elevated space-y-6 p-6">
               <div>
                 <h3 className="text-sm font-semibold uppercase tracking-wider text-text-muted">
                   {dict.about.experience}
                 </h3>
-                <p className="mt-1 text-2xl font-bold text-text-primary">
-                  {data.yearsOfExperience}+ {dict.about.years}
+                <p className="mt-1 text-2xl font-bold">
+                  <span className="text-gradient">{data.yearsOfExperience}+</span>{" "}
+                  <span className="text-text-primary">{dict.about.years}</span>
                 </p>
               </div>
               <div>

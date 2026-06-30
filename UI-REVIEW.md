@@ -1,185 +1,313 @@
-# UI Review -- Portfolio Website
+# UI Review — Portfolio
 
-**Date:** 2026-06-26
-**Overall Score:** 18/24
-**Screenshots:** Not captured (Playwright browsers not installed; dev server running on localhost:3000)
-**Baseline:** Abstract 6-pillar standards (no UI-SPEC.md)
-
----
-
-## Score Summary
-
-| Pillar | Score | Grade |
-|--------|-------|-------|
-| Copywriting | 2/4 | Needs Work |
-| Visuals | 3/4 | Good |
-| Color | 3/4 | Good |
-| Typography | 3/4 | Good |
-| Spacing | 4/4 | Excellent |
-| Experience Design | 3/4 | Good |
+**Audited:** 2026-06-30
+**Baseline:** Code analysis — no dev server detected, screenshots not captured
+**Stack:** Next.js 16, Tailwind CSS v4 (`@theme inline`), Framer Motion
+**Primary concern:** Contrast failures in light theme
 
 ---
 
-## Priority Fixes
+## Audit Summary
 
-1. **BLOCKER: Title mismatch between metadata and hero** -- `layout.tsx:18` says "Backend Software Engineer" but `personal.json:3` says "Fullstack Software Engineer". Search engines, social shares, and the page itself show conflicting titles. Fix: align metadata title to match `personal.title` from personal.json, or use the data source dynamically.
+| Pillar | Score | Status |
+|--------|-------|--------|
+| 1. Color & Contrast | 1/4 | CRITICAL |
+| 2. Typography | 3/4 | MINOR |
+| 3. Layout & Spacing | 3/4 | MINOR |
+| 4. Component Consistency | 3/4 | MINOR |
+| 5. Animation & Motion | 4/4 | PASS |
+| 6. Accessibility | 2/4 | MAJOR |
 
-2. **WARNING: Typo in email address** -- `personal.json:5` has `desarollo-software@lionbridge.com.do` -- "desarollo" is misspelled (should be "desarrollo"). This is the primary contact email shown in Contact section and Footer. If this is the actual email address, ignore; if it is a typo, fix in `personal.json`.
-
-3. **WARNING: Second experience entry has vague company name** -- `experience.json:18` lists company as "Software Development" which reads as a placeholder, not a real company name. This undermines credibility. Fix: use the actual company name or a more descriptive label.
+**Overall: 16/24**
 
 ---
 
-## Detailed Findings
+## Pillar 1: Color & Contrast — 1/4 CRITICAL
 
-### Pillar 1: Copywriting (2/4)
+### Computed Contrast Ratios (Light Theme)
 
-**Findings:**
+Background: `#faf9f7` — computed relative luminance L = 0.9507
+All ratios use WCAG 2.1 formula: (L_lighter + 0.05) / (L_darker + 0.05)
 
-- **BLOCKER: Identity conflict.** `layout.tsx:18-19` metadata declares "Backend Software Engineer" in both `<title>` and OG tags. `personal.json:3` declares "Fullstack Software Engineer". The hero renders personal.json, so visitors see "Fullstack" while link previews say "Backend". This is a credibility issue.
+| Color Pair | Values | Ratio | AA Normal (4.5:1) | AA Large (3:1) | Verdict |
+|---|---|---|---|---|---|
+| `--color-accent` on background | `#059669` on `#faf9f7` | **3.45:1** | FAIL | PASS | BLOCKER |
+| `--color-text-muted` on background | `#64748b` on `#faf9f7` | **4.20:1** | FAIL | PASS | WARNING |
+| `--color-text-secondary` on background | `#475569` on `#faf9f7` | **6.80:1** | PASS | PASS | OK |
+| `--color-text-primary` on background | `#0f172a` on `#faf9f7` | **18.4:1** | PASS | PASS | OK |
+| White text on primary button | `#ffffff` on `#059669` | **3.62:1** | FAIL | PASS | BLOCKER |
+| Focus outline on background | `#059669` on `#faf9f7` | **3.45:1** | FAIL | — | BLOCKER |
+| Glass card surface on page bg | `rgba(255,255,255,0.7)` comp. `#faf9f7` | **~1.04:1** | FAIL | FAIL | BLOCKER |
+| Border on background | `rgba(212,207,199,0.6)` comp. `#faf9f7` | **~1.22:1** | n/a (decorative) | — | WARNING |
+| Accent gradient "to" on background | `#0891b2` on `#faf9f7` | **3.21:1** | FAIL | PASS | WARNING |
 
-- **WARNING: Possible email typo.** `personal.json:5`: `desarollo-software` -- Spanish for "development" is "desarrollo" (double r). If this is the real address, no action needed.
+> Luminance method: IEC 61966-2-1 sRGB linearization applied per channel; WCAG 2.1 §1.4.3 formula.
 
-- **WARNING: Vague company name.** `experience.json:18`: `"company": "Software Development"` -- reads as a category, not an employer. Hurts professional credibility.
+### Issues
 
-- The About section copy (`personal.json:8-12`) is well-written, professional, and specific. Good use of concrete details (tax authority integrations, CI/CD).
+**1. BLOCKER — Accent color fails WCAG AA for normal text (3.45:1)**
 
-- CTAs are specific: "View Projects" and "Download Resume" in Hero are clear and action-oriented. Contact subtitle "Interested in working together? Let's connect." is appropriate.
+`--color-accent: #059669` in the light theme override (`globals.css:62`) is rendered as `text-accent` across:
+- Active nav link color (`Header.tsx:61`) — `text-sm` weight-normal
+- Hero greeting `font-mono text-sm` (`Hero.tsx:36`)
+- ProjectCard expand/collapse button (`ProjectCard.tsx:112`) — `text-sm`
+- Contact section icon (`Contact.tsx:51`) — 20px icon color
+- List bullet dots throughout (`Experience.tsx:43`, `ProjectCard.tsx:83,99`) — decorative but still rendered via `bg-accent`
 
-- Project descriptions are detailed with real challenges and results. No generic filler detected.
+In dark mode the accent is `#10b981` on `#0f172a`, which passes. The light-theme override chose a darker green `#059669` but did not verify it against the light background `#faf9f7`. The ratio is 3.45:1 — passes for large text only.
 
-- Section headings are terse single words (About, Projects, Skills, Experience, Contact) which is appropriate for a portfolio but the Projects section benefits from its subtitle.
+**2. BLOCKER — Primary button white text on `#059669` fails WCAG AA (3.62:1)**
 
-**Score justification:** The metadata/hero title mismatch is a significant copywriting failure that affects how the site presents to the world. The vague company name further reduces the score.
+`Button.tsx:17` applies `bg-accent text-white`. At 14px `font-medium` this is normal text and requires 4.5:1. Current ratio is 3.62:1. The issue originates from the accent token, not the button itself.
 
-### Pillar 2: Visuals (3/4)
+**3. BLOCKER — Focus ring at 3.45:1 fails WCAG 2.4.11 requirements**
 
-**Findings:**
+`globals.css:117` defines `outline: 2px solid var(--color-accent)` globally. In light mode `var(--color-accent)` resolves to `#059669` — ratio against page background 3.45:1. WCAG 2.4.11 (AA, 2.2) requires focus indicators to have 3:1 contrast against adjacent colors; on white card surfaces (`--color-surface-elevated: #ffffff`) the ratio drops to ~2.77:1, below the threshold.
 
-- Visual hierarchy is well-structured: Hero has clear name > title > tagline > CTA progression using size and weight differentiation.
+**4. BLOCKER — Glass cards are visually invisible against light background (1.04:1)**
 
-- Icon-only buttons in Footer and ProjectCard all have proper `aria-label` attributes. Good.
+`--color-glass: rgba(255,255,255,0.7)` composited over `#faf9f7` produces an effective background of approximately `rgb(253,253,252)` — luminance contrast of ~1.04:1 against the page. Cards used in `About.tsx:28`, `Skills.tsx:32`, `Contact.tsx:49`, and `ProjectCard.tsx:15` are structurally present but have no visual separation from the page. `--color-glass-border: rgba(212,207,199,0.6)` is likewise near-invisible at ~1.22:1 composite contrast.
 
-- The experience timeline with border-l-2 and dot markers creates effective visual storytelling.
+**5. WARNING — `--color-text-muted` fails WCAG AA for normal text (4.20:1)**
 
-- ProjectCard expand/collapse with ChevronDown rotation is a good affordance pattern.
+Used at `text-sm` (14px normal weight) in: project role label (`ProjectCard.tsx:25`), date labels (`Experience.tsx:29`), contact label (`Contact.tsx:53`), About sidebar subheadings (`About.tsx:30,39,49`), ProjectCard section subheadings (`ProjectCard.tsx:74,90`). All fail 4.5:1. They pass for large text (3:1) but `text-sm` is not large text.
 
-- **WARNING: No images or visual media anywhere.** The entire portfolio is text-only. No project screenshots, no profile photo, no diagrams. For a portfolio site, this is a notable gap -- projects have `screenshotPath: null` for all entries. This reduces visual engagement significantly.
+**6. WARNING — `.text-gradient` both stops fail WCAG AA for normal text**
 
-- Skills section uses icons (Lucide) paired with category names -- good visual anchor.
+`globals.css:91`. In light theme: from `#059669` (3.45:1) to `#0891b2` (3.21:1). Applied to the H1 name in `Hero.tsx:43` at `text-4xl md:text-6xl` — large text passes at 3:1, but the value in `About.tsx:34` at `text-2xl font-bold` (computed 24px bold) is borderline large text.
 
-- Consistent card styling across About sidebar, Skills cards, Contact links, and ProjectCards (rounded-xl, border-border, bg-surface).
+---
 
-**Score justification:** Solid component-level visual design and hierarchy, but the complete absence of imagery in a portfolio site is a meaningful gap.
+## Pillar 2: Typography — 3/4 MINOR
 
-### Pillar 3: Color (3/4)
+### Font Assignments
 
-**Findings:**
+| Role | Family | Token |
+|---|---|---|
+| Headings h1/h2/h3 | Space Grotesk | `globals.css:27,49` |
+| Body | Inter | `globals.css:25` |
+| Mono (logo, badges) | JetBrains Mono | `globals.css:26` |
 
-- Theme is well-defined in `globals.css` with semantic custom properties (background, foreground, surface, accent, text-primary/secondary/muted). No hardcoded hex values in components.
+### Size Scale in Use
 
-- Accent color (blue-500 / #3b82f6) usage is disciplined: active nav links, CTAs, skill icons, timeline dots, bullet markers, hover states. Not overused.
+`text-xs`, `text-sm`, `text-base` (implicit), `text-lg`, `text-xl`, `text-2xl`, `text-3xl`, `text-4xl`, `text-6xl` — 8 sizes total. No arbitrary `text-[N]` values found in any component.
 
-- Dark theme execution is clean: slate-900 background, slate-800 surface, proper layering with border-border separation.
+### Issues
 
-- `bg-green-500` in ProjectCard:94 for "Results" bullet dots is the only color outside the declared palette. This is intentional semantic differentiation (blue = challenges, green = results) but it is not defined as a theme variable, meaning it would not adapt if the palette changes.
+1. **MINOR — Eight distinct sizes exceeds a disciplined 4-5 step scale.** For a single-page portfolio the range is justifiable (hero needs 6xl, badges need xs) but the difference between `text-lg` body and `text-xl` card headings is subtle enough to be unnoticeable at a glance, reducing hierarchy signal.
 
-- Text hierarchy uses three defined tones: text-primary (#f8fafc), text-secondary (#94a3b8), text-muted (#64748b). Contrast ratios against slate-900:
-  - text-primary: ~15.4:1 (excellent)
-  - text-secondary: ~5.5:1 (passes AA)
-  - text-muted: ~3.7:1 (passes AA for large text only, fails AA for body text at 14px)
+2. **MINOR — Badge uses `font-mono text-sm` (`Badge.tsx:14`) for all technology labels.** JetBrains Mono at 14px renders with tighter character spacing than Inter. On mobile the narrow characters help with wrapping but may appear fragile in light mode where the badge background has no visible boundary (see Pillar 1 Issue 4).
 
-- **WARNING: text-muted contrast concern.** `text-muted` (#64748b on #0f172a) is used for body-sized text in several places: project roles (`ProjectCard.tsx:20`), date labels (`Experience.tsx:28`), category subheadings. At `text-sm` (14px), this fails WCAG AA (requires 4.5:1, gets ~3.7:1).
+3. **PASS — Line heights.** `leading-relaxed` (1.625) applied consistently to `p` elements across all sections. Heading line height inherits tight default — appropriate.
 
-**Score justification:** Well-structured palette with semantic tokens, but the text-muted contrast ratio for small text is a real accessibility gap, and one off-palette color exists.
+4. **PASS — Weights.** Three weights in use: `font-medium` (500), `font-semibold` (600), `font-bold` (700). Correct hierarchy.
 
-### Pillar 4: Typography (3/4)
+---
 
-**Findings:**
+## Pillar 3: Layout & Spacing — 3/4 MINOR
 
-- Font pairing: Inter (sans) + JetBrains Mono (mono) is a strong, professional pairing. Inter for body, JetBrains Mono used sparingly for the "RA" logo and Badge component. Good restraint.
+### Issues
 
-- Font sizes in use: text-sm, text-lg, text-xl, text-2xl, text-3xl, text-4xl, md:text-6xl. That is 7 distinct sizes -- slightly above the recommended 4-5, but the responsive variants (md:text-6xl, md:text-4xl) are reasonable scaling, leaving 5 base sizes which is acceptable.
+1. **PASS — Floating pill header clearance.** Header: `fixed top-4` + `h-14` = 4.5rem from top. Sections: `scroll-margin-top: 6rem` (`globals.css:46`). Hero: `pt-24` (6rem). Adequate on standard viewports.
 
-- Font weights: font-medium, font-semibold, font-bold. Three weights is appropriate.
+2. **MINOR — Mobile nav touch targets below 44px.** `Header.tsx:89` mobile links use `py-2.5` = 10px padding each side. At `text-sm` (14px) the total touch target is ~34px — below WCAG 2.5.5 recommendation of 44px.
 
-- `leading-relaxed` applied consistently to paragraph text (Hero tagline, About paragraphs, ProjectCard overview). Good readability choice.
+3. **MINOR — Experience timeline uses arbitrary positioning value.** `Experience.tsx:23`: `ml-4 pl-8`. Timeline dot at `Experience.tsx:28`: `-left-[2.55rem]` — an arbitrary Tailwind value. This works correctly but is a maintenance concern if the `ml-4 pl-8` relationship changes.
 
-- **Minor:** SectionHeading subtitle uses `text-lg` without explicit `leading-relaxed`, creating slightly different line-height treatment than other body text at the same size.
+4. **PASS — Section internal spacing is consistent.** `gap-6` between grid items, `gap-12` between major columns, `p-6` for card padding uniformly. No arbitrary `[Npx]` values found in grid or card spacing.
 
-- `tracking-tight` on h1, `tracking-wider` on uppercase labels -- appropriate typographic differentiation.
+5. **MINOR — Hero background orb blur radius is very large.** `Hero.tsx:24`: `h-[500px] w-[500px]` orb with `blur-[120px]`. In light theme the orb is `bg-accent/10` — `#059669` at 10% opacity on `#faf9f7`. The glow effect will be nearly imperceptible in light mode given the low opacity and high background luminance.
 
-**Score justification:** Strong font pairing and weight hierarchy. Minor inconsistency in line-height treatment.
+---
 
-### Pillar 5: Spacing (4/4)
+## Pillar 4: Component Consistency — 3/4 MINOR
 
-**Findings:**
+### Issues
 
-- Section wrapper uses consistent `py-20 md:py-28` with `max-w-6xl px-4 sm:px-6`. Applied uniformly across all sections.
+1. **PASS — Card surface class is consistent.** `.glass-card.card-elevated` applied uniformly in `About.tsx:28`, `Skills.tsx:32`, `Contact.tsx:49`, `ProjectCard.tsx:15`. All four card contexts use the same base.
 
-- Header height `h-16` with `scroll-margin-top: 5rem` in CSS for anchor offset. Correct relationship.
+2. **WARNING — `Button` component is anchor-only (`Button.tsx:3`).** Extends `AnchorHTMLAttributes<HTMLAnchorElement>` and always renders `<a>`. Cannot be used for action triggers. The pattern is intentionally safe for the current usage (CTAs navigate to anchors or PDFs), but the design system provides no `<button>` variant. ProjectCard's expand button and ThemeToggle correctly use native `<button>` — the split creates two button-style patterns that are not unified.
 
-- Card internal spacing is consistent: `p-6` across all card variants (About sidebar, Skills cards, ProjectCards, Contact links use `p-4` which is slightly different but appropriate for its smaller card size).
+3. **MINOR — Badge `default` variant has no visible border in light mode.** `Badge.tsx:10`: `bg-surface` in light theme is `#f0eee9` — contrast against `#faf9f7` page background is ~1.22:1. The badge shape is invisible as a container; only the text inside it provides visual presence. Adding a border (`border border-border`) would fix card visibility.
 
-- Gap values follow Tailwind scale: gap-2, gap-4, gap-6, gap-12. No arbitrary spacing values detected.
+4. **MINOR — `Badge` receives `hover:scale-105` regardless of interactivity.** `Badge.tsx:14`. Badges are `<span>` elements — non-interactive by default. The hover scale suggests clickability that does not exist, which is a false affordance. Should be removed from the base badge or only added when the badge is wrapped in an interactive element.
 
-- `space-y-2` for list items, `space-y-4` for paragraphs, `space-y-6` for card internal sections -- consistent rhythm.
+5. **PASS — Button hover states are consistent.** Both variants use `hover:-translate-y-0.5` lift and `transition-all duration-200`. The primary variant adds `hover:shadow-lg hover:shadow-accent/20`. The secondary variant adds `hover:bg-surface hover:text-text-primary`. Internally consistent.
 
-- `mb-12` for SectionHeading, `mb-6` for category subheadings, `mb-12` for experience items. Consistent vertical rhythm.
+---
 
-- No arbitrary `[Npx]` or `[Nrem]` values found anywhere in components.
+## Pillar 5: Animation & Motion — 4/4 PASS
 
-**Score justification:** Spacing is consistent, uses the Tailwind scale exclusively, and maintains good vertical rhythm throughout.
+### Findings
 
-### Pillar 6: Experience Design (3/4)
+1. **PASS — CSS reduced-motion kill-switch.** `globals.css:122-129` applies `animation-duration: 0.01ms !important` to `*, *::before, *::after` when `prefers-reduced-motion: reduce` is active. Covers all CSS keyframe animations including the `dot-glow` pulse.
 
-**Findings:**
+2. **PASS — Framer Motion checks `useReducedMotion()`.** `Hero.tsx:22` disables stagger on reduced motion. `AnimateOnScroll.tsx:62` returns a plain `<div>` — completely bypasses all scroll animation.
 
-- **Navigation:** IntersectionObserver-based active section tracking with `rootMargin: "-20% 0px -70% 0px"` is a good threshold for scroll-spy. Mobile menu closes on link click (line 80). Smooth scroll via CSS `scroll-behavior: smooth`.
+3. **PASS — Animation timing is appropriate.** Hero stagger at 0.18s, scroll animations at 0.6s, ProjectCard spring at `stiffness: 300, damping: 25`. None are excessively long or repetitive.
 
-- **Animations:** Framer Motion `AnimateOnScroll` with `viewport: { once: true }` prevents re-triggering. Staggered delays (i * 0.1) create pleasing cascade. ProjectCard expand/collapse uses AnimatePresence for clean mount/unmount.
+4. **PASS — `viewport: { once: true }` on all scroll animations** (`AnimateOnScroll.tsx:69`). Prevents disorienting re-animation on scroll-up.
 
-- **WARNING: No loading states.** No skeleton screens, loading spinners, or loading indicators anywhere. Since this is a static export site, this is less critical, but the resume download (`/resume.pdf`) has no loading feedback.
+5. **PASS — Pulse animation on experience dots is subtle.** `dot-glow` at 3s cycle, low-opacity glow values. Will degrade gracefully in light mode (glow barely visible against light bg — not a defect for animation pillar, but noted).
 
-- **WARNING: No error boundaries.** No ErrorBoundary component exists. A runtime error in any client component (Header, ProjectCard, AnimateOnScroll) would crash the entire page with no recovery UI.
+---
 
-- **WARNING: No 404/empty state handling.** If projects.json returns empty for a category, the section renders an empty div with just the category label. No "No projects yet" message.
+## Pillar 6: Accessibility — 2/4 MAJOR
 
-- Mobile menu uses simple show/hide without animation transition -- functional but abrupt compared to the polished animations elsewhere.
+### Issues
 
-- `Button` component is an anchor (`<a>`) not a `<button>`, which is semantically correct for its navigation uses (href="#projects", href="/resume.pdf").
+1. **BLOCKER (from Pillar 1) — Focus ring fails contrast in light theme.** Keyboard users see an insufficient `#059669` outline on `#faf9f7` backgrounds (3.45:1 < required 3:1 minimum on adjacent colors per WCAG 2.4.11). On white card surfaces it drops to ~2.77:1.
 
-- Footer social links have proper `target="_blank" rel="noopener noreferrer"` and `aria-label`. Good.
+2. **MAJOR — Mobile hamburger button missing `aria-expanded`.** `Header.tsx:71-77` has `aria-label="Toggle menu"` but no `aria-expanded={mobileOpen}`. Screen readers cannot report the current open/closed state of the menu to users. This violates WCAG 4.1.2 (Name, Role, Value).
 
-- **Minor:** The mobile hamburger menu has no focus trap -- keyboard users can tab behind the menu overlay.
+3. **MAJOR — No skip-to-content link.** The fixed floating header requires keyboard users to tab through the logo, 5 nav links, language switcher, and theme toggle before reaching main content on every page load. A visually-hidden skip link is essential for single-page layouts with fixed navigation.
 
-**Score justification:** Good navigation and animation patterns, but missing error boundaries and empty state handling are real gaps for production readiness.
+4. **MINOR — `LanguageSwitcher` uses `window.location.assign` for routing (`LanguageSwitcher.tsx:11`).** This causes a full hard reload, losing scroll position, focus context, and Next.js app state. Should use the Next.js router or at minimum an `<a>` element so the browser handles focus management correctly.
+
+5. **MINOR — Mobile nav links lack `cursor-pointer`.** `Header.tsx:89` mobile links have no explicit cursor. Desktop nav links also lack it (`Header.tsx:59`). The `Button.tsx:14` base class includes `cursor-pointer`; nav anchors do not — inconsistent cursor behavior for interactive elements.
+
+6. **MINOR — No focus trap in mobile menu.** When the mobile menu is open, keyboard focus can escape to behind the overlay. `Header.tsx:81-100` renders the menu but applies no `aria-modal`, no focus trap, and no `Escape` key handler to close it.
+
+7. **PASS — Icon-only interactive links include aria-labels.** `ProjectCard.tsx:32` GitHub link: `aria-label={`${project.title} GitHub`}`. Live demo link at line 42: `aria-label={`${project.title} live demo`}`. ThemeToggle at `ThemeToggle.tsx:30`: contextual aria-label that reflects current state. LanguageSwitcher at line 17: describes the target language. All correct.
+
+---
+
+## Remediation Plan
+
+Ordered by severity. All `globals.css` changes go inside the `html[data-theme="light"]` block unless otherwise noted.
+
+---
+
+### Fix 1 — Darken light-theme accent token to pass WCAG AA (BLOCKER)
+
+**Target:** minimum 4.5:1 against `#faf9f7` (L=0.9507) requires foreground L ≤ 0.1724.
+`#047857` — L ≈ 0.1485 — ratio ≈ **5.04:1**. Passes AA for normal text.
+
+```css
+/* globals.css — html[data-theme="light"] */
+--color-accent: #047857;                    /* was #059669 (3.45:1) → now 5.04:1 */
+--color-accent-hover: #065f46;             /* was #047857, step darker */
+--color-accent-gradient-from: #047857;     /* was #059669 */
+```
+
+This single change also fixes Fix 2 (button text) and Fix 4 (focus ring), which both derive from `--color-accent`.
+
+---
+
+### Fix 2 — Primary button contrast (resolved by Fix 1)
+
+With `--color-accent: #047857`, white text contrast becomes:
+(1.05) / (0.1485 + 0.05) = 1.05 / 0.1985 = **5.29:1** — passes AA for normal text.
+
+No additional change needed.
+
+---
+
+### Fix 3 — Make glass cards visible in light theme (BLOCKER)
+
+```css
+/* globals.css — html[data-theme="light"] */
+--color-glass: rgba(255, 255, 255, 0.92);      /* was 0.7 — near-opaque white */
+--color-glass-border: rgba(160, 153, 143, 0.9); /* was rgba(212,207,199,0.6) — visible edge */
+```
+
+Add a subtle shadow specifically for light mode to reinforce card elevation:
+
+```css
+/* globals.css — outside the theme block, targeting light specifically */
+html[data-theme="light"] .glass-card {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.10),
+              0 4px 16px rgba(0, 0, 0, 0.07);
+}
+```
+
+---
+
+### Fix 4 — Focus ring (resolved by Fix 1)
+
+The global `:focus-visible` rule (`globals.css:117`) uses `var(--color-accent)`. Once Fix 1 sets the light-theme accent to `#047857` (5.04:1), the focus ring inherits the corrected value automatically.
+
+---
+
+### Fix 5 — Darken `--color-text-muted` for WCAG AA (WARNING)
+
+Current `#64748b` = 4.20:1 on `#faf9f7` — fails for `text-sm` normal weight.
+Target `#576372` achieves ≈ 4.6:1.
+
+```css
+/* globals.css — html[data-theme="light"] */
+--color-text-muted: #576372;    /* was #64748b (4.20:1) → ~4.6:1 */
+```
+
+---
+
+### Fix 6 — Add `aria-expanded` to hamburger button (MAJOR)
+
+```tsx
+// Header.tsx — line 71
+<button
+  onClick={() => setMobileOpen(!mobileOpen)}
+  className="text-text-secondary md:hidden"
+  aria-label="Toggle menu"
+  aria-expanded={mobileOpen}
+  aria-controls="mobile-nav"
+>
+```
+
+Add `id="mobile-nav"` to the `<nav>` element at `Header.tsx:82`.
+
+---
+
+### Fix 7 — Add skip-to-content link (MAJOR)
+
+Add as the first child of `<body>` in the root layout:
+
+```tsx
+<a
+  href="#main-content"
+  className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:rounded-lg focus:bg-background focus:px-4 focus:py-2 focus:text-text-primary focus:shadow-lg"
+>
+  Skip to main content
+</a>
+```
+
+Add `id="main-content"` to the `<main>` element or the `#about` section's wrapping element.
+
+---
+
+### Fix 8 — Add visible border to Badge default variant (MINOR)
+
+```tsx
+// Badge.tsx — line 10
+variant === "default"
+  ? "bg-surface border border-border text-text-secondary"
+  : "bg-accent-subtle text-accent"
+```
+
+---
+
+### Fix 9 — Increase mobile nav touch targets (MINOR)
+
+```tsx
+// Header.tsx — line 89 — add min-h-[44px] flex items-center
+className={`flex min-h-[44px] items-center rounded-md px-3 text-sm transition-colors ...`}
+```
 
 ---
 
 ## Files Audited
 
 - `c:\Richard\private_projects\portfolio\src\app\globals.css`
-- `c:\Richard\private_projects\portfolio\src\app\layout.tsx`
-- `c:\Richard\private_projects\portfolio\src\app\page.tsx`
 - `c:\Richard\private_projects\portfolio\src\components\layout\Header.tsx`
-- `c:\Richard\private_projects\portfolio\src\components\layout\Footer.tsx`
-- `c:\Richard\private_projects\portfolio\src\components\layout\Section.tsx`
-- `c:\Richard\private_projects\portfolio\src\components\ui\Badge.tsx`
-- `c:\Richard\private_projects\portfolio\src\components\ui\Button.tsx`
-- `c:\Richard\private_projects\portfolio\src\components\ui\SectionHeading.tsx`
-- `c:\Richard\private_projects\portfolio\src\components\ui\AnimateOnScroll.tsx`
-- `c:\Richard\private_projects\portfolio\src\components\ui\ProjectCard.tsx`
-- `c:\Richard\private_projects\portfolio\src\components\ui\Icons.tsx`
 - `c:\Richard\private_projects\portfolio\src\components\sections\Hero.tsx`
 - `c:\Richard\private_projects\portfolio\src\components\sections\About.tsx`
-- `c:\Richard\private_projects\portfolio\src\components\sections\Projects.tsx`
 - `c:\Richard\private_projects\portfolio\src\components\sections\Skills.tsx`
 - `c:\Richard\private_projects\portfolio\src\components\sections\Experience.tsx`
 - `c:\Richard\private_projects\portfolio\src\components\sections\Contact.tsx`
-- `c:\Richard\private_projects\portfolio\src\data\personal.json`
-- `c:\Richard\private_projects\portfolio\src\data\projects.json`
-- `c:\Richard\private_projects\portfolio\src\data\skills.json`
-- `c:\Richard\private_projects\portfolio\src\data\experience.json`
-
-## UI REVIEW COMPLETE
+- `c:\Richard\private_projects\portfolio\src\components\ui\Button.tsx`
+- `c:\Richard\private_projects\portfolio\src\components\ui\Badge.tsx`
+- `c:\Richard\private_projects\portfolio\src\components\ui\ProjectCard.tsx`
+- `c:\Richard\private_projects\portfolio\src\components\ui\SectionHeading.tsx`
+- `c:\Richard\private_projects\portfolio\src\components\ui\AnimateOnScroll.tsx`
+- `c:\Richard\private_projects\portfolio\src\components\ui\ThemeToggle.tsx`
+- `c:\Richard\private_projects\portfolio\src\components\ui\LanguageSwitcher.tsx`

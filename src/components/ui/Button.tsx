@@ -11,11 +11,11 @@ export function Button({
   ...props
 }: ButtonProps) {
   const base =
-    "inline-flex items-center justify-center gap-2 rounded-lg px-6 py-3 font-medium text-sm transition-colors";
+    "inline-flex cursor-pointer items-center justify-center gap-2 rounded-lg px-6 py-3 font-medium text-sm transition-all duration-200";
   const styles =
     variant === "primary"
-      ? "bg-accent text-white hover:bg-accent-hover"
-      : "border border-border text-text-secondary hover:bg-surface hover:text-text-primary";
+      ? "bg-accent text-white hover:bg-accent-hover hover:shadow-lg hover:shadow-accent/20 hover:-translate-y-0.5"
+      : "border border-border text-text-secondary hover:bg-surface hover:text-text-primary hover:-translate-y-0.5";
 
   return (
     <a className={`${base} ${styles} ${className}`} {...props}>

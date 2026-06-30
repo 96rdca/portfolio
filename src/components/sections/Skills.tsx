@@ -28,10 +28,10 @@ export function Skills({ dict, data }: { dict: Dictionary; data: SkillCategory[]
       </AnimateOnScroll>
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {data.map((category, i) => (
-          <AnimateOnScroll key={category.id} delay={i * 0.08}>
-            <div className="rounded-xl border border-border bg-surface p-6">
+          <AnimateOnScroll key={category.id} delay={i * 0.08} variant={i % 2 === 0 ? "fade-left" : "fade-right"}>
+            <div className="glass-card card-elevated p-6">
               <div className="mb-4 flex items-center gap-3">
-                <div className="text-accent">
+                <div className="rounded-lg bg-accent/10 p-2 text-accent">
                   {iconMap[category.icon]}
                 </div>
                 <h3 className="text-lg font-medium text-text-primary">
