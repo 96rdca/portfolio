@@ -1,29 +1,47 @@
 [
   {
     "id": "lionbridge",
-    "company": "Lionbridge",
-    "position": "Ingeniero de Software Backend",
-    "startDate": "2022-01",
+    "company": "Lionbridge Capital",
+    "position": "Desarrollador de Software",
+    "startDate": "2019-01",
     "endDate": null,
     "accomplishments": [
-      "Diseñó y construyó una plataforma de facturación electrónica integrada con la DGII de República Dominicana",
+      "Diseñó y construyó una plataforma de facturación electrónica (e-NCF) integrada con la DGII de República Dominicana",
+      "Desarrolló aplicaciones móviles multiplataforma con Flutter, desplegadas en Google Play y Apple App Store",
+      "Construyó APIs RESTful con ASP.NET Core y Node.js/Express para consumo en clientes web y móviles",
+      "Mantuvo y extendió servicios SOAP heredados (ASMX y WCF) integrados con sistemas financieros de terceros",
+      "Implementó Windows Services en C# para procesamiento en segundo plano y flujos de trabajo internos programados",
       "Estableció infraestructura CI/CD con Gitea y TeamCity, automatizando builds y despliegues entre entornos",
-      "Implementó autenticación JWT segura con rotación de tokens de actualización en múltiples aplicaciones internas",
-      "Lideró la migración de sistemas legados a despliegues contenerizados con Docker sin tiempo de inactividad"
+      "Lideró despliegues contenerizados con Docker para múltiples aplicaciones internas",
+      "Integró procesamiento de pagos con Stripe en aplicaciones web existentes"
     ],
-    "technologies": ["ASP.NET Core", "PostgreSQL", "Docker", "TeamCity", "Gitea", "JWT"]
+    "technologies": ["ASP.NET Core", ".NET", "Flutter", "Node.js", "PostgreSQL", "Docker", "TeamCity", "WCF", "ASMX", "Stripe"]
   },
   {
-    "id": "previous-role",
-    "company": "Desarrollo de Software",
-    "position": "Desarrollador Full Stack",
-    "startDate": "2020-01",
-    "endDate": "2021-12",
+    "id": "fortness-intelligence",
+    "company": "Fortness Intelligence",
+    "position": "Contratista de Software",
+    "startDate": "2022-01",
+    "endDate": "2024-01",
     "accomplishments": [
-      "Construyó APIs RESTful con ASP.NET Core siguiendo principios de Arquitectura Limpia",
-      "Desarrolló aplicaciones basadas en bases de datos con SQL Server y Entity Framework",
-      "Colaboró con equipos de frontend para entregar aplicaciones web integradas"
+      "Entregó soluciones de software por proyecto en modalidad de contrato durante dos años",
+      "Construyó servicios backend y APIs adaptados a los requerimientos del cliente",
+      "Colaboró de forma remota con stakeholders para definir, desarrollar y entregar incrementos de software"
     ],
-    "technologies": ["ASP.NET Core", "SQL Server", "Entity Framework", "JavaScript"]
+    "technologies": ["ASP.NET Core", ".NET", "SQL Server", "REST APIs"]
+  },
+  {
+    "id": "siuben",
+    "company": "SIUBEN",
+    "position": "Desarrollador de Software",
+    "startDate": "2017-06",
+    "endDate": "2018-12",
+    "accomplishments": [
+      "Desarrolló aplicaciones móviles multiplataforma con Xamarin para recolección de datos en campo",
+      "Construyó aplicaciones web full-stack utilizando ASP.NET y SQL Server",
+      "Diseñó e implementó APIs Web RESTful consumidas por clientes móviles",
+      "Implementó Windows Services para procesamiento de datos en segundo plano y sincronización"
+    ],
+    "technologies": ["Xamarin", "ASP.NET", "SQL Server", "REST APIs", "Windows Services"]
   }
 ]
