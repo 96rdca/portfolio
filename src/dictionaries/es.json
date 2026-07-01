@@ -3,6 +3,7 @@
     "about": "Sobre mí",
     "projects": "Proyectos",
     "skills": "Habilidades",
+    "technologies": "Tecnologías",
     "experience": "Experiencia",
     "contact": "Contacto"
   },
@@ -30,6 +31,9 @@
   },
   "skills": {
     "title": "Habilidades"
+  },
+  "technologies": {
+    "title": "Tecnologías"
   },
   "experience": {
     "title": "Experiencia",

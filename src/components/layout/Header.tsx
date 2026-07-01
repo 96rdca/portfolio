@@ -6,7 +6,7 @@ import { ThemeToggle } from "@/components/ui/ThemeToggle";
 import { LanguageSwitcher } from "@/components/ui/LanguageSwitcher";
 import type { Dictionary } from "@/lib/dictionaries";
 
-const NAV_HREFS = ["#about", "#projects", "#skills", "#experience", "#contact"];
+const NAV_HREFS = ["#about", "#projects", "#skills", "#technologies", "#experience", "#contact"];
 
 export function Header({ dict, lang }: { dict: Dictionary; lang: string }) {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -16,6 +16,7 @@ export function Header({ dict, lang }: { dict: Dictionary; lang: string }) {
     { href: "#about", label: dict.nav.about },
     { href: "#projects", label: dict.nav.projects },
     { href: "#skills", label: dict.nav.skills },
+    { href: "#technologies", label: dict.nav.technologies },
     { href: "#experience", label: dict.nav.experience },
     { href: "#contact", label: dict.nav.contact },
   ];
