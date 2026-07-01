@@ -23,21 +23,21 @@
     "order": 1
   },
   {
-    "id": "auth-security",
-    "title": "Authentication & Security System",
+    "id": "salonet",
+    "title": "SaloNET",
     "category": "development",
-    "overview": "Comprehensive authentication and authorization system with JWT access/refresh token flow, API key management, role-based permissions, and full integration test coverage. Built to handle enterprise security requirements across multiple applications.",
-    "techStack": ["ASP.NET Core", "JWT", "API Keys", "xUnit", "PostgreSQL", "Redis", "Docker"],
-    "role": "Backend Developer",
+    "overview": "Multi-tenant SaaS platform for e-NCF electronic invoicing and commission management in the Dominican Republic. Built on .NET 9.0 and PostgreSQL, it handles tenant isolation, fiscal document generation compliant with DGII regulations, and commission tracking across business units. All user-facing UI is in Spanish.",
+    "techStack": ["ASP.NET Core", ".NET 9", "PostgreSQL", "Entity Framework", "Docker", "Multi-tenant"],
+    "role": "Lead Developer",
     "challenges": [
-      "Implementing secure JWT refresh token rotation with proper token revocation and family detection",
-      "Designing an API key system with scoped permissions, rate limiting, and usage tracking",
-      "Achieving high integration test coverage including authentication edge cases and token expiration scenarios"
+      "Designing a robust multi-tenant architecture with strict data isolation between tenants",
+      "Implementing e-NCF fiscal document generation and DGII compliance rules per tenant",
+      "Building a commission tracking engine that handles complex business rules across multiple entities"
     ],
     "results": [
-      "Zero security incidents related to authentication since deployment",
-      "Comprehensive test suite covering all authentication flows and edge cases",
-      "Reusable authentication middleware adopted across multiple internal projects"
+      "Deployed to production serving multiple tenants with zero cross-tenant data leakage",
+      "Full DGII e-NCF compliance achieved with automated fiscal document workflows",
+      "Commission module reduced manual reconciliation effort significantly"
     ],
     "githubUrl": null,
     "liveUrl": null,
@@ -69,27 +69,50 @@
     "order": 3
   },
   {
-    "id": "salonet",
-    "title": "SaloNET",
+    "id": "queue-system",
+    "title": "Queue Management System",
     "category": "development",
-    "overview": "Salon management platform for appointment scheduling, client management, and service tracking. Full-stack application with a modern web frontend and robust backend API.",
-    "techStack": ["ASP.NET Core", "PostgreSQL", "Entity Framework", "React", "Docker"],
-    "role": "Fullstack Developer",
+    "overview": "Full-stack queue management platform built with ASP.NET Core 9, Blazor, PostgreSQL, SignalR, and RabbitMQ. Covers the entire customer-flow lifecycle: ticket issuance at kiosks, real-time calling on display screens, operator workstations, analytics, and fine-grained role management.",
+    "techStack": ["ASP.NET Core 9", "Blazor", "PostgreSQL", "SignalR", "RabbitMQ", "Docker"],
+    "role": "Lead Developer",
     "challenges": [
-      "Designing a flexible appointment scheduling system that handles overlapping bookings and cancellations",
-      "Building a responsive interface that works seamlessly on both desktop and mobile devices",
-      "Implementing real-time availability updates to prevent double bookings"
+      "Building real-time display updates across kiosks, operator stations, and screens using SignalR with guaranteed message delivery",
+      "Designing a RabbitMQ-based event pipeline to decouple ticket issuance from screen notifications at scale",
+      "Implementing fine-grained role management covering kiosk operators, supervisors, and display-only screens"
     ],
     "results": [
-      "Streamlined appointment management reducing no-shows",
-      "Improved client retention through automated reminders and history tracking",
-      "Clean, intuitive UI adopted quickly by salon staff"
+      "End-to-end customer flow covered from ticket issuance to service completion with real-time visibility",
+      "Sub-second update latency on all display screens under concurrent load",
+      "Analytics dashboard providing service time metrics and operator performance insights"
     ],
     "githubUrl": null,
     "liveUrl": null,
     "screenshotPath": null,
     "featured": true,
     "order": 4
+  },
+  {
+    "id": "auth-security",
+    "title": "Authentication & Security System",
+    "category": "development",
+    "overview": "Comprehensive authentication and authorization system with JWT access/refresh token flow, API key management, role-based permissions, and full integration test coverage. Built to handle enterprise security requirements across multiple applications.",
+    "techStack": ["ASP.NET Core", "JWT", "API Keys", "xUnit", "PostgreSQL", "Redis", "Docker"],
+    "role": "Backend Developer",
+    "challenges": [
+      "Implementing secure JWT refresh token rotation with proper token revocation and family detection",
+      "Designing an API key system with scoped permissions, rate limiting, and usage tracking",
+      "Achieving high integration test coverage including authentication edge cases and token expiration scenarios"
+    ],
+    "results": [
+      "Zero security incidents related to authentication since deployment",
+      "Comprehensive test suite covering all authentication flows and edge cases",
+      "Reusable authentication middleware adopted across multiple internal projects"
+    ],
+    "githubUrl": null,
+    "liveUrl": null,
+    "screenshotPath": null,
+    "featured": false,
+    "order": 5
   },
   {
     "id": "wcf-asmx-services",
@@ -111,8 +134,8 @@
     "githubUrl": null,
     "liveUrl": null,
     "screenshotPath": null,
-    "featured": true,
-    "order": 5
+    "featured": false,
+    "order": 6
   },
   {
     "id": "windows-forms",
@@ -134,8 +157,8 @@
     "githubUrl": null,
     "liveUrl": null,
     "screenshotPath": null,
-    "featured": true,
-    "order": 6
+    "featured": false,
+    "order": 7
   },
   {
     "id": "yarp-gateway",
@@ -157,8 +180,8 @@
     "githubUrl": null,
     "liveUrl": null,
     "screenshotPath": null,
-    "featured": true,
-    "order": 7
+    "featured": false,
+    "order": 8
   },
   {
     "id": "gitea-config",

@@ -23,21 +23,21 @@
     "order": 1
   },
   {
-    "id": "auth-security",
-    "title": "Sistema de Autenticación y Seguridad",
+    "id": "salonet",
+    "title": "SaloNET",
     "category": "development",
-    "overview": "Sistema integral de autenticación y autorización con flujo de tokens JWT de acceso/actualización, gestión de claves API, permisos basados en roles y cobertura completa de pruebas de integración. Construido para manejar requisitos de seguridad empresarial en múltiples aplicaciones.",
-    "techStack": ["ASP.NET Core", "JWT", "API Keys", "xUnit", "PostgreSQL", "Redis", "Docker"],
-    "role": "Desarrollador Backend",
+    "overview": "Plataforma SaaS multi-tenant para facturación electrónica e-NCF y gestión de comisiones en República Dominicana. Construida sobre .NET 9.0 y PostgreSQL, maneja aislamiento de tenants, generación de documentos fiscales conforme a la DGII y seguimiento de comisiones entre unidades de negocio. Toda la interfaz de usuario está en español.",
+    "techStack": ["ASP.NET Core", ".NET 9", "PostgreSQL", "Entity Framework", "Docker", "Multi-tenant"],
+    "role": "Desarrollador Líder",
     "challenges": [
-      "Implementar rotación segura de tokens de actualización JWT con revocación adecuada de tokens y detección de familias",
-      "Diseñar un sistema de claves API con permisos delimitados, limitación de velocidad y seguimiento de uso",
-      "Lograr alta cobertura de pruebas de integración incluyendo casos límite de autenticación y escenarios de expiración de tokens"
+      "Diseñar una arquitectura multi-tenant robusta con aislamiento estricto de datos entre tenants",
+      "Implementar la generación de documentos fiscales e-NCF y las reglas de cumplimiento de la DGII por tenant",
+      "Construir un motor de seguimiento de comisiones que maneje reglas de negocio complejas entre múltiples entidades"
     ],
     "results": [
-      "Cero incidentes de seguridad relacionados con autenticación desde el despliegue",
-      "Suite de pruebas integral cubriendo todos los flujos de autenticación y casos límite",
-      "Middleware de autenticación reutilizable adoptado en múltiples proyectos internos"
+      "Desplegada en producción sirviendo múltiples tenants sin fuga de datos entre ellos",
+      "Cumplimiento total con e-NCF de la DGII con flujos de documentos fiscales automatizados",
+      "El módulo de comisiones redujo significativamente el esfuerzo de conciliación manual"
     ],
     "githubUrl": null,
     "liveUrl": null,
@@ -69,27 +69,50 @@
     "order": 3
   },
   {
-    "id": "salonet",
-    "title": "SaloNET",
+    "id": "queue-system",
+    "title": "Sistema de Gestión de Filas",
     "category": "development",
-    "overview": "Plataforma de gestión de salón para programación de citas, gestión de clientes y seguimiento de servicios. Aplicación full-stack con un frontend web moderno y una API backend robusta.",
-    "techStack": ["ASP.NET Core", "PostgreSQL", "Entity Framework", "React", "Docker"],
-    "role": "Desarrollador Fullstack",
+    "overview": "Plataforma de gestión de filas full-stack construida con ASP.NET Core 9, Blazor, PostgreSQL, SignalR y RabbitMQ. Cubre todo el ciclo de atención al cliente: emisión de tickets en kioscos, llamada en tiempo real en pantallas de visualización, estaciones de operadores, analíticas y gestión de roles detallada.",
+    "techStack": ["ASP.NET Core 9", "Blazor", "PostgreSQL", "SignalR", "RabbitMQ", "Docker"],
+    "role": "Desarrollador Líder",
     "challenges": [
-      "Diseñar un sistema flexible de programación de citas que maneje reservas superpuestas y cancelaciones",
-      "Construir una interfaz responsiva que funcione sin problemas tanto en escritorio como en dispositivos móviles",
-      "Implementar actualizaciones de disponibilidad en tiempo real para prevenir reservas dobles"
+      "Construir actualizaciones en tiempo real entre kioscos, estaciones de operadores y pantallas usando SignalR con entrega garantizada",
+      "Diseñar un pipeline de eventos con RabbitMQ para desacoplar la emisión de tickets de las notificaciones en pantalla a escala",
+      "Implementar gestión de roles detallada que cubra operadores de kiosco, supervisores y pantallas de solo visualización"
     ],
     "results": [
-      "Gestión de citas simplificada reduciendo ausencias",
-      "Mejoró la retención de clientes mediante recordatorios automatizados y seguimiento de historial",
-      "Interfaz limpia e intuitiva adoptada rápidamente por el personal del salón"
+      "Flujo completo de atención al cliente desde emisión del ticket hasta fin del servicio con visibilidad en tiempo real",
+      "Latencia de actualización inferior a un segundo en todas las pantallas bajo carga concurrente",
+      "Panel de analíticas con métricas de tiempo de servicio y rendimiento de operadores"
     ],
     "githubUrl": null,
     "liveUrl": null,
     "screenshotPath": null,
     "featured": true,
     "order": 4
+  },
+  {
+    "id": "auth-security",
+    "title": "Sistema de Autenticación y Seguridad",
+    "category": "development",
+    "overview": "Sistema integral de autenticación y autorización con flujo de tokens JWT de acceso/actualización, gestión de claves API, permisos basados en roles y cobertura completa de pruebas de integración. Construido para manejar requisitos de seguridad empresarial en múltiples aplicaciones.",
+    "techStack": ["ASP.NET Core", "JWT", "API Keys", "xUnit", "PostgreSQL", "Redis", "Docker"],
+    "role": "Desarrollador Backend",
+    "challenges": [
+      "Implementar rotación segura de tokens de actualización JWT con revocación adecuada de tokens y detección de familias",
+      "Diseñar un sistema de claves API con permisos delimitados, limitación de velocidad y seguimiento de uso",
+      "Lograr alta cobertura de pruebas de integración incluyendo casos límite de autenticación y escenarios de expiración de tokens"
+    ],
+    "results": [
+      "Cero incidentes de seguridad relacionados con autenticación desde el despliegue",
+      "Suite de pruebas integral cubriendo todos los flujos de autenticación y casos límite",
+      "Middleware de autenticación reutilizable adoptado en múltiples proyectos internos"
+    ],
+    "githubUrl": null,
+    "liveUrl": null,
+    "screenshotPath": null,
+    "featured": false,
+    "order": 5
   },
   {
     "id": "wcf-asmx-services",
@@ -111,8 +134,8 @@
     "githubUrl": null,
     "liveUrl": null,
     "screenshotPath": null,
-    "featured": true,
-    "order": 5
+    "featured": false,
+    "order": 6
   },
   {
     "id": "windows-forms",
@@ -134,8 +157,8 @@
     "githubUrl": null,
     "liveUrl": null,
     "screenshotPath": null,
-    "featured": true,
-    "order": 6
+    "featured": false,
+    "order": 7
   },
   {
     "id": "yarp-gateway",
@@ -157,8 +180,8 @@
     "githubUrl": null,
     "liveUrl": null,
     "screenshotPath": null,
-    "featured": true,
-    "order": 7
+    "featured": false,
+    "order": 8
   },
   {
     "id": "gitea-config",
