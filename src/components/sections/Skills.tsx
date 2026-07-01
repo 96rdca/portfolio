@@ -4,6 +4,7 @@ import {
   Container,
   Layers,
   FlaskConical,
+  Zap,
 } from "lucide-react";
 import { Section } from "@/components/layout/Section";
 import { SectionHeading } from "@/components/ui/SectionHeading";
@@ -18,6 +19,7 @@ const iconMap: Record<string, React.ReactNode> = {
   Container: <Container size={24} />,
   Layers: <Layers size={24} />,
   FlaskConical: <FlaskConical size={24} />,
+  Zap: <Zap size={24} />,
 };
 
 export function Skills({ dict, data }: { dict: Dictionary; data: SkillCategory[] }) {

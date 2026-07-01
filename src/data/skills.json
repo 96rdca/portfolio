@@ -3,7 +3,13 @@
     "id": "backend",
     "name": "Backend",
     "icon": "Server",
-    "skills": [".NET", "ASP.NET Core", "Entity Framework", "Web API"]
+    "skills": [".NET", "ASP.NET Core", "Blazor", "Entity Framework", "Web API"]
+  },
+  {
+    "id": "realtime",
+    "name": "Real-time & Messaging",
+    "icon": "Zap",
+    "skills": ["SignalR", "RabbitMQ"]
   },
   {
     "id": "database",
@@ -15,7 +21,7 @@
     "id": "infrastructure",
     "name": "Infrastructure",
     "icon": "Container",
-    "skills": ["Docker", "IIS", "Linux", "TeamCity", "Gitea"]
+    "skills": ["Docker", "IIS", "Linux", "TeamCity", "Gitea", "YARP"]
   },
   {
     "id": "architecture",
